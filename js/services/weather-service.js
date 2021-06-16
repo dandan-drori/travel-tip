@@ -9,8 +9,7 @@ export const weatherService = {
 }
 
 function getWeather(lat, lon, locationName = 'default') {
-	const isInStorage = checkIfInStorage(locationName)
-	if (!Object.keys(gWeather).length || !isInStorage) {
+	if (!Object.keys(gWeather).length || !gWeather[locationName]) {
 		const url = `${baseURL}lat=${lat}&lon=${lon}&APPID=${W_KEY}&units=metric`
 		return fetch(url)
 			.then(res => res.json())
@@ -32,13 +31,4 @@ function getWeather(lat, lon, locationName = 'default') {
 	}
 	console.log('got weather from cache')
 	return Promise.resolve(gWeather[locationName])
-}
-
-function checkIfInStorage(locationName) {
-	for (const key in gWeather) {
-		if (key === locationName) {
-			return true
-		}
-	}
-	return false
 }

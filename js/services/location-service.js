@@ -9,7 +9,7 @@ export const locationService = {
 }
 
 const LOCATIONS_KEY = 'locations'
-const gLocations = storageService.load(LOCATIONS_KEY) || []
+var gLocations = storageService.load(LOCATIONS_KEY) || []
 
 function getLocations() {
 	return Promise.resolve(gLocations)
@@ -23,8 +23,9 @@ function getLocationByCoords(lat, lng) {
 	return gLocations.find(location => location.lat === lat && location.lng === lng)
 }
 
-function addLocation(id, name, lat, lng, weather, createdAt, updatedAt) {
-	if (!id) id = utilService.makeId()
+function addLocation(name, lat, lng, weather, updatedAt) {
+	const id = utilService.makeId()
+	const createdAt = Date.now()
 	if (!updatedAt) updatedAt = createdAt
 	const newLocation = {
 		id,
