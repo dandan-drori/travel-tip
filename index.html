@@ -1,13 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="css/styles.css" />
-		<title>Travel Tip</title>
-	</head>
-	<body>
-		<script type="module" src="js/controller.js"></script>
-	</body>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="css/styles.css" />
+	<title>Travel Tip</title>
+</head>
+
+<body>
+	<header>
+		<h1>
+			TravelTip
+		</h1>
+		<section>
+			<input type="text" name="search">
+			<button>
+				GO
+			</button>
+			<button>
+				My Location
+			</button>
+		</section>
+	</header>
+	<section>
+		<article>
+			<h2>Location</h2><span>Central Park, New York</span>
+		</article>
+		<button>
+			Copy Location
+		</button>
+	</section>
+	<main>
+		<section class="info-container">
+			<article class="weather-container">
+
+			</article>
+			<article class="locations">
+				<table>
+					<thead>
+						<td>Lorem, ipsum</td>
+						<td>Lorem, ipsum.</td>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Lorem, ipsum dolor.</td>
+							<td>Lorem, ipsum dolor.</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+		</section>
+
+		<section class="map-container"></section>
+	</main>
+	<script type="module" src="js/controller.js"></script>
+</body>
+
 </html>
