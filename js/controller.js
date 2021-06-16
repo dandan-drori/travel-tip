@@ -34,7 +34,8 @@ function onInit() {
 	})
 	// <-- map -->
 	mapService
-		.map()
+		.initMap()
+		// onGetLocs()
 		.then(() => {
 			console.log('Map is ready')
 		})
@@ -76,14 +77,4 @@ function onGetUserPos() {
 function onPanTo() {
 	console.log('Panning the Map')
 	mapService.panTo(35.6895, 139.6917)
-}
-
-// <-- weather -->
-
-function onGetWeather() {
-	weatherService.getWeather(31.11, 31.11).then(renderWeather)
-}
-
-function renderWeather(weather) {
-	console.log('weather', weather)
 }

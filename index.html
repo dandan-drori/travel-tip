@@ -9,23 +9,21 @@
 	</head>
 
 	<body>
-		<header>
-			<h1>TravelTip</h1>
-			<section>
-				<input type="text" name="search" />
-				<button>GO</button>
-				<button>My Location</button>
-			</section>
-		</header>
-		<section>
-			<article>
-				<h2>Location</h2>
-				<span>Central Park, New York</span>
-			</article>
-			<button>Copy Location</button>
-		</section>
 		<main>
 			<section class="info-container">
+				<header>
+					<h1>TravelTip</h1>
+					<input type="text" name="search" />
+					<button>GO</button>
+					<button>My Location</button>
+				</header>
+				<section>
+					<article>
+						<h2>Location</h2>
+						<span>Central Park, New York</span>
+					</article>
+					<button>Copy Location</button>
+				</section>
 				<!-- only dandan -->
 				<article class="weather-container"></article>
 				<!-- only dandan -->
@@ -45,7 +43,7 @@
 				</article>
 			</section>
 			<!-- only guy -->
-			<section class="map-container" id="map"></section>
+			<section class="map-container" id="map" onclick="onAddMarker()"></section>
 			<!-- only guy -->
 		</main>
 		<div id="myModal" class="modal">
