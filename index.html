@@ -1,59 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="css/styles.css" />
-		<title>Travel Tip</title>
-	</head>
 
-	<body>
-		<main>
-			<section class="info-container">
-				<header>
-					<h1>TravelTip</h1>
-					<input type="text" name="search" />
-					<button>GO</button>
-					<button>My Location</button>
-				</header>
-				<section>
-					<article>
-						<h2>Location</h2>
-						<span>Central Park, New York</span>
-					</article>
-					<button>Copy Location</button>
-				</section>
-				<!-- only dandan -->
-				<article class="weather-container"></article>
-				<!-- only dandan -->
-				<article class="locations">
-					<table>
-						<thead>
-							<td>Lorem, ipsum</td>
-							<td>Lorem, ipsum.</td>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Lorem, ipsum dolor.</td>
-								<td>Lorem, ipsum dolor.</td>
-							</tr>
-						</tbody>
-					</table>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="css/styles.css" />
+	<title>Travel Tip</title>
+</head>
+
+<body>
+	<main>
+		<section class="info-container">
+			<header>
+				<h1>TravelTip</h1>
+				<input type="text" name="search" />
+				<button>GO</button>
+				<button>My Location</button>
+			</header>
+			<section>
+				<article>
+					<h2>Location</h2>
+					<span>Central Park, New York</span>
 				</article>
+				<button>Copy Location</button>
 			</section>
-			<!-- only guy -->
-			<section class="map-container" id="map" onclick="onAddMarker()"></section>
-			<!-- only guy -->
-		</main>
-		<div id="myModal" class="modal">
-			<div class="modal-content">
-				X
-				<label for="text">Enter place nickname</label>
-				<input type="text" name="text" id="nickname" />
-				<span class="save">save</span>
-			</div>
+			<!-- only dandan -->
+			<article class="weather-container"></article>
+			<!-- only dandan -->
+			<article class="locations">
+				<table>
+					<thead>
+						<td>Lorem, ipsum</td>
+						<td>Lorem, ipsum.</td>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Lorem, ipsum dolor.</td>
+							<td>Lorem, ipsum dolor.</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+		</section>
+		<!-- only guy -->
+		<section class="map-container" id="map" onclick="onAddMarker(event)"></section>
+		<!-- only guy -->
+	</main>
+	<div id="myModal" class="modal">
+		<div class="modal-content">
+			X
+			<label for="text">Enter place nickname</label>
+			<input type="text" name="text" id="nickname" />
+			<span class="save">save</span>
 		</div>
-		<script type="module" src="js/controller.js"></script>
-	</body>
+	</div>
+	<script type="module" src="js/controller.js"></script>
+</body>
+
 </html>

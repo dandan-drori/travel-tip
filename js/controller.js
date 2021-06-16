@@ -14,7 +14,6 @@ function onInit() {
 	// FIXME: get coords from map service
 	const coords = { lat: 31.11, lon: 31.11 }
 	weatherService.getWeather(coords.lat, coords.lon, 'default').then(location => {
-		console.log('res', location)
 		const { name, country, icon, description, wind, temp, max, min } = location
 		const baseIconURL = 'http://openweathermap.org/img/wn/'
 		const iconURL = `${baseIconURL}${icon}@2x.png`
@@ -39,7 +38,7 @@ function onInit() {
 		.initMap()
 		// onGetLocs()
 		.then(() => {
-			console.log('Map is ready')
+			// console.log('Map is ready')
 		})
 		.catch(() => console.log('Error: cannot init map'))
 }
@@ -54,7 +53,9 @@ function getPosition() {
 
 function onAddMarker() {
 	console.log('Adding a marker')
-	mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 })
+	const pos = mapService.getPos()
+	console.log(pos);
+	mapService.addMarker(pos)
 }
 
 function onGetLocs() {
