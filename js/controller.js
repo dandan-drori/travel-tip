@@ -15,27 +15,28 @@ window.onDeleteLocation = onDeleteLocation
 function onInit() {
 	// <-- weather -->
 	// FIXME: get coords from map service
-	const coords = onGetUserPos()
-	console.log(coords);
-	// weatherService.getWeather(coords.lat, coords.lon, 'default').then(location => {
-	// 	const { name, country, icon, description, wind, temp, max, min } = location
-	// 	const iconURL = `baseIconUrl/${icon}`
-	// 	const strHtml = `
-	//         <section>
-	//             <img src="${iconURL}"/>
-	//             <article>
-	//                 <span>${name}, ${country}</span>
-	//                 <span>${description}</span>
-	//             </article>
-	//             <article>
-	//                 <span>${temp}&deg;C</span>
-	//                 <span>temperature from ${min} to ${max} &deg;C,</span> 
-	//                 <span>wind ${wind} m/s.</span>
-	//             </article>
-	//         </section>
-	//     `
-	// })
-	// < --map -->
+	const coords = { lat: 31.11, lon: 31.11 }
+	weatherService.getWeather(coords.lat, coords.lon, 'default').then(location => {
+		const { name, country, icon, description, wind, temp, max, min } = location
+		const baseIconURL = 'http://openweathermap.org/img/wn/'
+		const iconURL = `${baseIconURL}${icon}@2x.png`
+		const strHtml = `
+            <section>
+                <img src="${iconURL}"/>
+                <article>
+                    <span>${name}, ${country}</span>
+                    <span>${description}</span>
+                </article>
+                <article>
+                    <span>${temp}&deg;C</span>
+                    <span>temperature from ${min} to ${max} &deg;C,</span> 
+                    <span>wind ${wind} m/s.</span>
+                </article>
+            </section>
+        `
+		document.querySelector('.weather-container').innerHTML = strHtml
+	})
+	// <-- map -->
 	mapService
 		.initMap()
 		// onGetLocs()
