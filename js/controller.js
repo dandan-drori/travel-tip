@@ -44,9 +44,11 @@ function onInit() {
 			// console.log('Map is ready')
 		})
 		.catch(() => console.log('Error: cannot init map'))
+	onRenderLocations()
 }
 
 function onAddMarker() {
+	const gLocation = prompt('name?')
 	const pos = mapService.getPos()
 	mapService.addMarker(pos)
 }
@@ -79,16 +81,15 @@ function onPanTo() {
 	mapService.panTo(35.6895, 139.6917)
 }
 
-onRenderLocations()
+
 function onRenderLocations() {
 	const elTbody = document.querySelector('tbody');
-	// const location = prompt('name?')
 	// const locations = gLocation?
 	const location = 'name'
 	for (let i = 0; i < 5; i++) {
 		const strHtml = `
 		<tr>
-		<td>${location}</td>
+		<td>${gLocation}</td>
 		<td>
 		<button onclick="onGoToLocation('{lat:31,lng:31}')">Go</button>
 		<button onclick="onDeleteLocation('id')">Delete</button>
