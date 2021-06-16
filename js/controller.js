@@ -1,6 +1,6 @@
 'use strict'
 
-import { mapService } from './services/map.service.js'
+import { mapService } from './services/map-service.js'
 import { weatherService } from './services/weather-service.js'
 
 window.onload = onInit
@@ -10,8 +10,31 @@ window.onGetLocs = onGetLocs
 window.onGetUserPos = onGetUserPos
 
 function onInit() {
+	// <-- weather -->
+	// FIXME: get coords from map service
+	const coords = { lat: 31.11, lon: 31.11 }
+	weatherService.getWeather(coords.lat, coords.lon, 'default').then(location => {
+		console.log('res', location)
+		const { name, country, icon, description, wind, temp, max, min } = location
+		const iconURL = `baseIconUrl/${icon}`
+		const strHtml = `
+            <section>
+                <img src="${iconURL}"/>
+                <article>
+                    <span>${name}, ${country}</span>
+                    <span>${description}</span>
+                </article>
+                <article>
+                    <span>${temp}&deg;C</span>
+                    <span>temperature from ${min} to ${max} &deg;C,</span> 
+                    <span>wind ${wind} m/s.</span>
+                </article>
+            </section>
+        `
+	})
+	// <-- map -->
 	mapService
-		.initMap()
+		.map()
 		.then(() => {
 			console.log('Map is ready')
 		})
@@ -55,8 +78,7 @@ function onPanTo() {
 	mapService.panTo(35.6895, 139.6917)
 }
 
-import { weatherService } from './services/weather-service'
-import { mapService } from './service/map-service'
+// <-- weather -->
 
 function onGetWeather() {
 	weatherService.getWeather(31.11, 31.11).then(renderWeather)
