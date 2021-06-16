@@ -16,7 +16,8 @@ function onInit() {
 	weatherService.getWeather(coords.lat, coords.lon, 'default').then(location => {
 		console.log('res', location)
 		const { name, country, icon, description, wind, temp, max, min } = location
-		const iconURL = `baseIconUrl/${icon}`
+		const baseIconURL = 'http://openweathermap.org/img/wn/'
+		const iconURL = `${baseIconURL}${icon}@2x.png`
 		const strHtml = `
             <section>
                 <img src="${iconURL}"/>
@@ -31,6 +32,7 @@ function onInit() {
                 </article>
             </section>
         `
+		document.querySelector('.weather-container').innerHTML = strHtml
 	})
 	// <-- map -->
 	mapService
