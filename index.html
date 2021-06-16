@@ -15,15 +15,14 @@
 			<header>
 				<h1>TravelTip</h1>
 				<input type="text" name="search" />
-				<button>GO</button>
-				<button onclick="onGetUserPos()">My Location</button>
+				<button class="go">GO</button>
+				<button onclick="onGetUserPos()" class="my-loc"><img src="img/location.png" alt=""></button>
 			</header>
 			<section>
 				<article>
-					<h2>Location</h2>
-					<span>Central Park, New York</span>
+					<h2>Location:</h2><span>Central Park, New York</span>
+					<button class="copy"><img src="img/copy.png" alt="Copy Location to clipboard"></button>
 				</article>
-				<button>Copy Location</button>
 			</section>
 			<!-- only dandan -->
 			<article class="weather-container"></article>
@@ -35,30 +34,6 @@
 						<td>Actions</td>
 					</thead>
 					<tbody>
-						<!-- <tr>
-							<td>Lorem</td>
-							<td><button>Go</button><button>Delete</button></td>
-						</tr>
-						<tr>
-							<td>Lore</td>
-							<td><button>Go</button><button>Delete</button></td>
-
-						</tr>
-						<tr>
-							<td>Lorem,</td>
-							<td><button>Go</button><button>Delete</button></td>
-
-						</tr>
-						<tr>
-							<td>Lorem</td>
-							<td><button>Go</button><button>Delete</button></td>
-
-						</tr>
-						<tr>
-							<td>Lorem</td>
-							<td><button>Go</button><button>Delete</button></td>
-
-						</tr> -->
 					</tbody>
 				</table>
 			</article>

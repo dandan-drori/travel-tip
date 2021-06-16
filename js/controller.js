@@ -4,6 +4,7 @@ import { mapService } from './services/map-service.js'
 import { weatherService } from './services/weather-service.js'
 import { geocodeService } from './services/geocode-service.js'
 import { locationService } from './services/location-service.js'
+import { storageService } from './services/storage-service.js'
 
 window.onload = onInit
 window.onAddMarker = onAddMarker
@@ -57,9 +58,10 @@ function onAddMarker() {
 	const pos = mapService.getPos()
 	weatherService.getWeather(pos.lat, pos.lng, gLocationName).then(weather => {
 		locationService.addLocation(gLocationName, pos.lat, pos.lng, weather)
+		onRenderLocations()
 	})
 	const currLocation = locationService.getLocationByName(gLocationName)
-	onRenderLocations()
+	// onRenderLocations()
 	mapService.addMarker(pos)
 }
 
@@ -88,7 +90,7 @@ function onGetUserPos() {
 
 function onPanTo() {
 	console.log('Panning the Map')
-	// mapService.panTo(35.6895, 139.6917)
+	mapService.panTo(35.6895, 139.6917)
 }
 
 function onRenderLocations() {
@@ -110,8 +112,13 @@ function onRenderLocations() {
 }
 
 function onGoToLocation(location) {
-	console.log('go to', location)
 }
+
+
 function onDeleteLocation(id) {
-	console.log('delete location by', id)
+	var locationsArray = storageService.load('locations')
+	const idx = locationsArray.findIndex(location => location.id === id)
+	locationsArray.splice(idx, 1)
+	storageService.save('locations', locationsArray)
+	onRenderLocations()
 }
