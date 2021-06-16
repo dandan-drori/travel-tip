@@ -30,7 +30,6 @@ function getWeather(lat, lon, locationName = 'default') {
 				return locationData
 			})
 	}
-	console.log('from cache')
 	return Promise.resolve(gLocations[locationName])
 }
 

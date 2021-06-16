@@ -22,7 +22,7 @@ function initMap(lat = 31, lng = 31) {
                 document.querySelector('#map'), {
                 // center: { lat: +params.lat, lng: +params.lng },
                 center: { lat, lng },
-                zoom: 3,
+                zoom: 18,
                 mapId: '25c4971063e3a54',
                 label: {
                     text: 'Label text',
@@ -31,21 +31,20 @@ function initMap(lat = 31, lng = 31) {
                 zoomControl: false,
                 streetViewControl: false,
             })
-            console.log('Map!', gMap);
+            // console.log('Map!', gMap);
 
             gMap.addListener("click", (mapsMouseEvent) => {
                 console.log(mapsMouseEvent);
                 gPos = JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
                 gPos = JSON.parse(gPos)
                 console.log(gPos);
-            }),
-                console.log(gMap);
+            })
         })
         .catch((eror) => console.log(eror))
 }
-function addMarker(loc) {
+function addMarker(pos) {
     const marker = new google.maps.Marker({
-        position: loc,
+        position: pos,
         map: gMap,
         title: 'Hello World!',
         icon: {
@@ -80,25 +79,6 @@ function _connectGoogleApi() {
 
 function getPos() {
     return gPos
-}
-
-// FIXME: LOCATION SERVICE ? -->
-
-export const locService = {
-    getLocs
-}
-
-const locs = [
-    { name: 'Greatplace', lat: 32.047104, lng: 34.832384 },
-    { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
-]
-
-function getLocs() {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(locs);
-        }, 2000)
-    });
 }
 
 var modal = document.getElementById('myModal')
