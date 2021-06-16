@@ -1,6 +1,6 @@
 'use strict'
 
-import { mapService } from './services/map.service.js'
+import { mapService } from './services/map-service.js'
 import { weatherService } from './services/weather-service.js'
 
 window.onload = onInit
@@ -12,6 +12,7 @@ window.onGetUserPos = onGetUserPos
 function onInit() {
 	mapService
 		.initMap()
+		// onGetLocs()
 		.then(() => {
 			console.log('Map is ready')
 		})
@@ -53,15 +54,4 @@ function onGetUserPos() {
 function onPanTo() {
 	console.log('Panning the Map')
 	mapService.panTo(35.6895, 139.6917)
-}
-
-import { weatherService } from './services/weather-service'
-import { mapService } from './service/map-service'
-
-function onGetWeather() {
-	weatherService.getWeather(31.11, 31.11).then(renderWeather)
-}
-
-function renderWeather(weather) {
-	console.log('weather', weather)
 }

@@ -1,74 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="css/styles.css" />
-		<title>Travel Tip</title>
-	</head>
 
-	<body onload="onInit()">
-		<header>
-			<h1>TravelTip</h1>
-			<section>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="css/styles.css" />
+	<title>Travel Tip</title>
+</head>
+
+<body>
+	<main>
+		<section class="info-container">
+			<header>
+				<h1>TravelTip</h1>
 				<input type="text" name="search" />
 				<button>GO</button>
 				<button>My Location</button>
+			</header>
+			<section>
+				<article>
+					<h2>Location</h2>
+					<span>Central Park, New York</span>
+				</article>
+				<button>Copy Location</button>
 			</section>
-		</header>
-		<section>
-			<article>
-				<h2>Location</h2>
-				<span>Central Park, New York</span>
+			<!-- only dandan -->
+			<article class="weather-container"></article>
+			<!-- only dandan -->
+			<article class="locations">
+				<table>
+					<thead>
+						<td>Lorem, ipsum</td>
+						<td>Lorem, ipsum.</td>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Lorem, ipsum dolor.</td>
+							<td>Lorem, ipsum dolor.</td>
+						</tr>
+					</tbody>
+				</table>
 			</article>
-			<button>Copy Location</button>
 		</section>
-<<<<<<< HEAD
 		<!-- only guy -->
-		<section class="map-container" id="map"></section>
+		<section class="map-container" id="map" onclick="onAddMarker()"></section>
 		<!-- only guy -->
 	</main>
 	<div id="myModal" class="modal">
 		<div class="modal-content">
 			X
 			<label for="text">Enter place nickname</label>
-			<input type="text" name="text" id="nickname">
+			<input type="text" name="text" id="nickname" />
 			<span class="save">save</span>
-=======
-		<main>
-			<section class="info-container">
-				<!-- only dandan -->
-				<article class="weather-container"></article>
-				<!-- only dandan -->
-				<article class="locations">
-					<table>
-						<thead>
-							<td>Lorem, ipsum</td>
-							<td>Lorem, ipsum.</td>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Lorem, ipsum dolor.</td>
-								<td>Lorem, ipsum dolor.</td>
-							</tr>
-						</tbody>
-					</table>
-				</article>
-			</section>
-			<!-- only guy -->
-			<section class="map-container"></section>
-			<!-- only guy -->
-		</main>
-		<div id="myModal" class="modal">
-			<div class="modal-content">
-				X
-				<label for="text">Enter place nickname</label>
-				<input type="text" name="text" id="nickname" />
-				<span class="save">save</span>
-			</div>
->>>>>>> fcb9457a9db3710ef52a7bb69a5028599d58c5f4
 		</div>
-		<script type="module" src="js/controller.js"></script>
-	</body>
+	</div>
+	<script type="module" src="js/controller.js"></script>
+</body>
+
 </html>

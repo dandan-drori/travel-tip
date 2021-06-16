@@ -4,6 +4,32 @@
   box-sizing: border-box;
 }
 
+body {
+  height: 100vh;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  background-color: rgb(218, 218, 218);
+  height: 100%;
+}
+
+header {
+  display: flex;
+  gap: 10px;
+  margin-block-end: 20px;
+}
+
+.info-container {
+  width: 50%;
+}
+
+#map {
+  width: 50%;
+  border-radius: 10px;
+}
 .modal {
   display: none;
   position: fixed;
