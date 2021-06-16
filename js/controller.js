@@ -1,8 +1,9 @@
 'use strict'
 
 import { mapService } from './services/map-service.js'
-import { storageService } from './services/storage-service.js'
 import { weatherService } from './services/weather-service.js'
+import { geocodeService } from './services/geocode-service.js'
+import { locationService } from './services/location-service.js'
 
 window.onload = onInit
 window.onAddMarker = onAddMarker
@@ -12,8 +13,12 @@ window.onGetUserPos = onGetUserPos
 window.onGoToLocation = onGoToLocation
 window.onDeleteLocation = onDeleteLocation
 
+var gLocationName
+
 function onInit() {
 	// <-- weather -->
+	// FIXME: get query from location input
+	geocodeService.getGeocode('Tokyo').then(res => console.log(res))
 	// FIXME: get coords from map service
 	const coords = { lat: 31.11, lon: 31.11 }
 	weatherService.getWeather(coords.lat, coords.lon, 'default').then(location => {
@@ -48,8 +53,13 @@ function onInit() {
 }
 
 function onAddMarker() {
-	const gLocation = prompt('name?')
+	gLocationName = prompt('name?')
 	const pos = mapService.getPos()
+	weatherService.getWeather(pos.lat, pos.lng, gLocationName).then(weather => {
+		locationService.addLocation(gLocationName, pos.lat, pos.lng, weather)
+	})
+	const currLocation = locationService.getLocationByName(gLocationName)
+	onRenderLocations()
 	mapService.addMarker(pos)
 }
 
@@ -78,31 +88,30 @@ function onGetUserPos() {
 
 function onPanTo() {
 	console.log('Panning the Map')
-	mapService.panTo(35.6895, 139.6917)
+	// mapService.panTo(35.6895, 139.6917)
 }
 
-
 function onRenderLocations() {
-	const elTbody = document.querySelector('tbody');
-	// const locations = gLocation?
-	const location = 'name'
-	for (let i = 0; i < 5; i++) {
-		const strHtml = `
-		<tr>
-		<td>${gLocation}</td>
-		<td>
-		<button onclick="onGoToLocation('{lat:31,lng:31}')">Go</button>
-		<button onclick="onDeleteLocation('id')">Delete</button>
-		</td>
-		</tr>
-		`
-		elTbody.innerHTML += strHtml
-	}
+	locationService.getLocations().then(locations => {
+		var strHtml = ''
+		for (const key in locations) {
+			strHtml += `
+                <tr>
+                    <td>${locations[key].name}</td>
+                    <td>
+                        <button onclick="onGoToLocation(${locations[key].lat},${locations[key].lng})">Go</button>
+                        <button onclick="onDeleteLocation('${locations[key].id}')">Delete</button>
+                    </td>
+                </tr>
+            `
+		}
+		document.querySelector('tbody').innerHTML = strHtml
+	})
 }
 
 function onGoToLocation(location) {
-	console.log('go to', location);
+	console.log('go to', location)
 }
 function onDeleteLocation(id) {
-	console.log('delete location by', id);
+	console.log('delete location by', id)
 }
