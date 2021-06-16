@@ -2,6 +2,7 @@
 
 import { mapService } from './services/map-service.js'
 import { weatherService } from './services/weather-service.js'
+import { geocodeService } from './services/geocode-service.js'
 
 window.onload = onInit
 window.onAddMarker = onAddMarker
@@ -11,6 +12,8 @@ window.onGetUserPos = onGetUserPos
 
 function onInit() {
 	// <-- weather -->
+	// FIXME: get query from location input
+	geocodeService.getGeocode('Tokyo').then(res => console.log(res))
 	// FIXME: get coords from map service
 	const coords = { lat: 31.11, lon: 31.11 }
 	weatherService.getWeather(coords.lat, coords.lon, 'default').then(location => {
@@ -54,7 +57,6 @@ function getPosition() {
 function onAddMarker() {
 	console.log('Adding a marker')
 	const pos = mapService.getPos()
-	console.log(pos);
 	mapService.addMarker(pos)
 }
 
