@@ -1,2 +1,3 @@
 'use strict'
-import { getWeather } from './services/weather-service'
+import { weatherService } from './services/weather-service'
+import { mapService } from './js/service/map-service'

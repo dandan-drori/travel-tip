@@ -1,6 +1,10 @@
 'use strict'
-const map;
-function initMap(lat, lng) {
+export const mapService = {
+    map,
+    onSetPlace,
+    setCurrLocation
+};
+function map(lat, lng) {
     if (!lat) lat = 32.0749831;
     if (!lng) lat = 34.9120554;
 
@@ -42,7 +46,6 @@ function initMap(lat, lng) {
             },
             animation: google.maps.Animation.DROP
         });
-
     }
 }
 
