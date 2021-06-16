@@ -3,20 +3,26 @@
 export const mapService = {
     initMap,
     addMarker,
-    panTo
+    panTo,
+    getPos
 }
 
 var gMap;
+var gPos;
 
-function initMap(lat, lng) {
-    console.log('InitMap');
+function initMap(lat = 31, lng = 31) {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const params = Object.fromEntries(urlSearchParams.entries());
+    // var searchParams = new URLSearchParams(window.location.search);
+    // searchParams.set(lat, lng);
+    // window.location.search = searchParams.toString();
     return _connectGoogleApi()
         .then(() => {
-            console.log('google available');
             gMap = new google.maps.Map(
                 document.querySelector('#map'), {
-                center: { lat: 29.55823779167494, lng: 34.9526631121632 },
-                zoom: 18,
+                // center: { lat: +params.lat, lng: +params.lng },
+                center: { lat, lng },
+                zoom: 3,
                 mapId: '25c4971063e3a54',
                 label: {
                     text: 'Label text',
@@ -26,18 +32,25 @@ function initMap(lat, lng) {
                 streetViewControl: false,
             })
             console.log('Map!', gMap);
+
+            gMap.addListener("click", (mapsMouseEvent) => {
+                console.log(mapsMouseEvent);
+                gPos = JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+                gPos = JSON.parse(gPos)
+                console.log(gPos);
+            }),
+                console.log(gMap);
         })
         .catch((eror) => console.log(eror))
 }
-
 function addMarker(loc) {
     const marker = new google.maps.Marker({
         position: loc,
         map: gMap,
         title: 'Hello World!',
         icon: {
-            url: 'https://toppng.com/uploads/preview/in-location-map-icon-navigation-symbol-ma-google-maps-marker-blue-11562916561qaf3tyejum.png',
-            scaledSize: new google.maps.Size(40, 40)
+            url: 'https://toppng.com/uploads/thumbnail//blue-map-pin-blue-google-maps-marker-115629322352wmfavf4hh.png',
+            scaledSize: new google.maps.Size(30, 50)
         },
         animation: google.maps.Animation.DROP
     });
@@ -48,18 +61,6 @@ function addMarker(loc) {
 function panTo(lat, lng) {
     var laLatLng = new google.maps.LatLng(lat, lng);
     gMap.panTo(laLatLng);
-}
-
-setCurrLocation()
-function setCurrLocation() {
-    console.log('here');
-    navigator.geolocation.getCurrentPosition(function (position) {
-        new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: { lat: position.coords.latitude, lng: position.coords.longitude },
-            zoom: 17
-        })
-    });
 }
 
 
@@ -75,6 +76,10 @@ function _connectGoogleApi() {
         elGoogleApi.onload = resolve;
         elGoogleApi.onerror = () => reject('Google script failed to load')
     })
+}
+
+function getPos() {
+    return gPos
 }
 
 // FIXME: LOCATION SERVICE ? -->
