@@ -1,56 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/styles.css" />
+		<title>Travel Tip</title>
+	</head>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="css/styles.css" />
-	<title>Travel Tip</title>
-</head>
-
-<body>
-	<main>
-		<section class="info-container">
-			<header>
-				<h1>TravelTip</h1>
-				<input type="text" name="search" />
-				<button class="go">GO</button>
-				<button onclick="onGetUserPos()" class="my-loc"><img src="img/location.png" alt=""></button>
-			</header>
-			<section>
-				<article>
-					<h2>Location:</h2><span>Central Park, New York</span>
-					<button class="copy"><img src="img/copy.png" alt="Copy Location to clipboard"></button>
+	<body>
+		<main>
+			<section class="info-container">
+				<header>
+					<h1>TravelTip</h1>
+					<input type="text" name="search" onchange="onSearch(this.value)" />
+					<button class="go">GO</button>
+					<button onclick="onGetUserPos()" class="my-loc">
+						<img src="img/location.png" alt="" />
+					</button>
+				</header>
+				<section>
+					<article>
+						<h2>Location:</h2>
+						<span>Central Park, New York</span>
+						<button class="copy" onclick="onCopyURL()">
+							<img src="img/copy.png" alt="Copy Location to clipboard" />
+						</button>
+						<input type="text" class="invisible-input" />
+					</article>
+				</section>
+				<!-- only dandan -->
+				<article class="weather-container"></article>
+				<!-- only dandan -->
+				<article class="locations">
+					<table>
+						<thead>
+							<td>Location</td>
+							<td>Actions</td>
+						</thead>
+						<tbody></tbody>
+					</table>
 				</article>
 			</section>
-			<!-- only dandan -->
-			<article class="weather-container"></article>
-			<!-- only dandan -->
-			<article class="locations">
-				<table>
-					<thead>
-						<td>Location</td>
-						<td>Actions</td>
-					</thead>
-					<tbody>
-					</tbody>
-				</table>
-			</article>
-		</section>
-		<!-- only guy -->
-		<section class="map-container" id="map" onclick="onAddMarker(event)"></section>
-		<!-- only guy -->
-	</main>
-	<div id="myModal" class="modal">
-		<div class="modal-content">
-			X
-			<label for="text">Enter place nickname</label>
-			<input type="text" name="text" id="nickname" />
-			<span class="save">save</span>
+			<!-- only guy -->
+			<section class="map-container" id="map" onclick="onAddMarker(event)"></section>
+			<!-- only guy -->
+		</main>
+		<div id="myModal" class="modal">
+			<div class="modal-content">
+				X
+				<label for="text">Enter place nickname</label>
+				<input type="text" name="text" id="nickname" />
+				<span class="save">save</span>
+			</div>
 		</div>
-	</div>
-	<script type="module" src="js/controller.js"></script>
-</body>
-
+		<script type="module" src="js/controller.js"></script>
+	</body>
 </html>

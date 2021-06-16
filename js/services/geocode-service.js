@@ -15,6 +15,7 @@ function getGeocode(query) {
 		return fetch(url)
 			.then(res => res.json())
 			.then(data => {
+				if (!data.results.length) return Promise.reject(null)
 				gGeocodes[query] = data.results[0].geometry.location
 				storageService.save(GEOCODE_KEY, gGeocodes)
 				return gGeocodes[query]
